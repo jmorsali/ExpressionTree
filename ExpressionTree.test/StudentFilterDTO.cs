@@ -1,6 +1,4 @@
-﻿namespace ExpressionTree;
-
-public class StudentFilterDTO
+﻿public class StudentFilterDTO
 {
     [Equal]
     public int Id { get; set; }

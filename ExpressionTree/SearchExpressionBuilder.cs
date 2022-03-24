@@ -3,9 +3,7 @@ using System.Reflection;
 
 public class Equal : Attribute { }
 public class Contain : Attribute { }
-
 public class GreaterThan : Attribute { }
-
 public class LessThan : Attribute { }
 
 
@@ -19,7 +17,7 @@ public class EntityParam : Attribute
     }
 }
 
-public static class extension
+public static class SearchExpressionBuilder
 {
 
     public static Expression<Func<TEntity, bool>> SearchExpression<TEntity, TEntityDto>(TEntityDto dto)
