@@ -51,13 +51,14 @@ public static class SearchExpressionBuilder
             var greaterThanAttribute = dtoProperty.GetCustomAttributes<GreaterThan>().FirstOrDefault();
 
 
-            if (value is string && string.IsNullOrWhiteSpace(value.ToString()))
+            if (dtoProperty.PropertyType == typeof(string)
+                 && (value == null || string.IsNullOrWhiteSpace(value.ToString())))
                 continue;
 
-            if (value is long? && (value as long?) == null)
+            if (dtoProperty.PropertyType == typeof(long?) && (value as long?) == null)
                 continue;
 
-            if (value is int? && (value as int?) == null)
+            if (dtoProperty.PropertyType == typeof(int?) && (value as int?) == null)
                 continue;
 
 
@@ -86,26 +87,7 @@ public static class SearchExpressionBuilder
 
         }
 
-
-
-
-
-
-        //foreach (var entityParam in typeof(TEntity).GetProperties())
-        //{
-        //    if (dtoPropertiesValues.ContainsKey(entityParam.Name))
-        //    {
-
-        //        var expression = Expression.Equal(Expression.Property(entity, entityParam),
-        //            dtoPropertiesValues[entityParam.Name]);
-        //        ExpresionItems.Add(expression);
-        //    }
-        //}
-
         var comparisonExpression = ExpresionItems.Aggregate(Expression.And);
-        //var comparisonExpression = typeof(TEntity).GetProperties()
-        //    .Select((info, i) => Expression.Equal(Expression.Property(entity, info), dtoPropertiesValues[info.Name]))
-        //    .Aggregate(Expression.And);
         return Expression.Lambda<Func<TEntity, bool>>(comparisonExpression, entity);
     }
 }

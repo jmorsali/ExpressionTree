@@ -1,17 +1,18 @@
-﻿public class StudentFilterDTO
+﻿
+public record StudentFilterDTO
 {
     [Equal]
-    public int Id { get; set; }
+    public int? Id { get; set; }
 
     [EntityParam("Name")]
     [Contain]
-    public string SearchName { get; set; }
+    public string? SearchName { get; set; }
 
     [EntityParam("Age")]
     [LessThan]
-    public long ToAge { get; set; }
+    public long? ToAge { get; set; }
 
     [EntityParam("Age")]
     [GreaterThan]
-    public long FromAge { get; set; }
+    public long? FromAge { get; set; }
 }
