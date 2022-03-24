@@ -50,6 +50,17 @@ public static class SearchExpressionBuilder
             var lessThanAttribute = dtoProperty.GetCustomAttributes<LessThan>().FirstOrDefault();
             var greaterThanAttribute = dtoProperty.GetCustomAttributes<GreaterThan>().FirstOrDefault();
 
+
+            if (value is string && string.IsNullOrWhiteSpace(value.ToString()))
+                continue;
+
+            if (value is long? && (value as long?) == null)
+                continue;
+
+            if (value is int? && (value as int?) == null)
+                continue;
+
+
             if (equalAttribute != null)
             {
                 var expression = Expression.Equal(Expression.Property(entity, entityParam), Expression.Constant(value));
