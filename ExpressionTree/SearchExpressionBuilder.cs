@@ -1,22 +1,6 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
 
-public class Equal : Attribute { }
-public class Contain : Attribute { }
-public class GreaterThan : Attribute { }
-public class LessThan : Attribute { }
-
-
-public class EntityParam : Attribute
-{
-    public string Name { get; }
-
-    public EntityParam(string Name)
-    {
-        this.Name = Name;
-    }
-}
-
 public static class SearchExpressionBuilder
 {
 
