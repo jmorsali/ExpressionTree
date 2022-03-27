@@ -3,7 +3,6 @@ using System.Reflection;
 
 public static class SearchExpressionBuilder
 {
-
     public static Expression<Func<TEntity, bool>> SearchExpression<TEntity, TEntityDto>(TEntityDto dto)
     {
         var entity = Expression.Parameter(typeof(TEntity));
